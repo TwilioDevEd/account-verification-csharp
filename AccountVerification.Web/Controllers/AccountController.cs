@@ -131,6 +131,11 @@ namespace AccountVerification.Web.Controllers
                 ModelState.AddModelError("", ApplicationMessages.UserNotFoundForGivenEmail);
                 return View(model);
             }
+            if (user.PhoneNumberConfirmed)
+            {
+                ModelState.AddModelError("", ApplicationMessages.UserAlreadyConfirmed);
+                return View(model);
+            }
 
             await UserManager.RequestPhoneNumberConfirmationTokenAsync(user.Id);
             return RedirectToAction("VerifyRegistrationCode", new {message = ApplicationMessages.VerificationCodeResent});
