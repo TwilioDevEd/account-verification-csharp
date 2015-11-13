@@ -76,6 +76,11 @@ namespace AccountVerification.Web.Controllers
                 ModelState.AddModelError("", ApplicationMessages.UserNotFoundForGivenEmail);
                 return View(model);
             }
+            if(user.PhoneNumberConfirmed)
+            {
+                ModelState.AddModelError("", ApplicationMessages.UserAlreadyConfirmed);
+                return View(model);
+            }
 
             var result = await UserManager.ConfirmPhoneNumberAsync(user.Id, model.Code);
 

@@ -1,7 +1,10 @@
+using System;
+
 namespace AccountVerification.Web
 {
     public class ApplicationMessages
     {
+        public const string UserAlreadyConfirmed = "You had already confirmed the registration process";
         public const string InvalidVerificationCode = "Invalid verification code.";
         public const string UserIdNotFound = "User Id not found.";
         public const string VerificationCodeSent = "A verification code was sent to your phone.";
