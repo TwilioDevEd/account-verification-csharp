@@ -25,7 +25,6 @@ namespace AccountVerification.Web.Tests.Common
                 { "78e5fda1-3ea3-473d-902f-b62aa86716db", new ApplicationUser {Name="Shiju",  Email="shiju@email.com",
                     UserName = "shiju@email.com", Id="78e5fda1-3ea3-473d-902f-b62aa86716db"}}
             };
-
         }
 
         public Task CreateAsync(ApplicationUser user, string password)
@@ -52,10 +51,6 @@ namespace AccountVerification.Web.Tests.Common
                 return Task.FromResult(_users[userId]);
             }
             return Task.FromResult<ApplicationUser>(null);
-        }
-
-        public void Dispose()
-        {
         }
 
         public IQueryable<ApplicationUser> Users
@@ -246,5 +241,30 @@ namespace AccountVerification.Web.Tests.Common
             user.PhoneNumberConfirmed = confirmed;
             return Task.FromResult(0);
         }
+
+        #region Disposable Pattern Implementation
+        private bool _disposed = false;
+
+        //Implement IDisposable.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                _disposed = true;
+            }
+        } 
+        #endregion
     }
 }
