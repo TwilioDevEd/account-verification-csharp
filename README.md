@@ -1,4 +1,4 @@
-# Account Verification
+# Account Verification - ASP.NET MVC
 [![Build status](https://ci.appveyor.com/api/projects/status/u7adfy20o1d2mcbt?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/account-verification-csharp)
 
 Use Authy and Twilio to verify your user's account.
@@ -27,4 +27,10 @@ Use Authy and Twilio to verify your user's account.
 4. Check it out at [http://localhost:25451/](http://localhost:25451/)
 
 That's it
+
+## Meta
+
+* No warranty expressed or implied. Software is as is. Diggity.
+* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* Lovingly crafted by Twilio Developer Education.
 
