@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Account Status";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        Dear @User.Identity.GetUserName(), your account has been succesfully verified.
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Verify your account now","VerifyRegistrationCode")
+    </p>
+}

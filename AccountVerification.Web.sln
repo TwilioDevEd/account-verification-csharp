@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountVerification.Web", "AccountVerification.Web\AccountVerification.Web.csproj", "{983D91FE-409C-40E9-830E-8B1A977A8D42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountVerification.Web.Tests", "AccountVerification.Web.Tests\AccountVerification.Web.Tests.csproj", "{C577D8C7-9BBC-4D05-8AEE-49ED942F6246}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{983D91FE-409C-40E9-830E-8B1A977A8D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983D91FE-409C-40E9-830E-8B1A977A8D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983D91FE-409C-40E9-830E-8B1A977A8D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983D91FE-409C-40E9-830E-8B1A977A8D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C577D8C7-9BBC-4D05-8AEE-49ED942F6246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C577D8C7-9BBC-4D05-8AEE-49ED942F6246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C577D8C7-9BBC-4D05-8AEE-49ED942F6246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C577D8C7-9BBC-4D05-8AEE-49ED942F6246}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
