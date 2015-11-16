@@ -173,7 +173,7 @@
       in the `AuthyClient` instance, which returns the `AuthyUserId` for the newly registered user, and updates it with that value.
 
       Finally, to order Authy to send the verification code to the user, we call the `SendSms` method on the `AuthyClient` instance passing it the user's
-      `AuthyUserId` and a `true` value for the `forceSmsVerification` parameter. This last parameter is mandatory to be passed as `true` because
+      `AuthyUserId` and a `true` value for the `force` parameter. This last parameter is mandatory to be passed as `true` because
       that way we force Authy to send an SMS explicitly, which may not happen according to the Authy's user profile settings and devices, if he/she
       is already and Authy's user, and the Authy's alternatives verification methods, but that's out of our scope.
 
