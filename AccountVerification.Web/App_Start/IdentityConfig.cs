@@ -141,7 +141,7 @@ namespace AccountVerification.Web
                 await RegisterAsAuthyUser(user);
             }
 
-            AuthyApiClient.SendSms(user.AuthyUserId, true);
+            AuthyApiClient.SendSms(user.AuthyUserId, force:true);
         }
 
         #region Private Methods
