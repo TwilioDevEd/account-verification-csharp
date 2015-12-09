@@ -15,11 +15,11 @@ Use Authy and Twilio to verify your user's account.
 2. Create a new file AccountVerification.Web/Local.config and update the content with:
 
    ```
-   <appSettings file="Local.config">
-        <add key="TwilioAccountSID" value="your_account_SID" />
-        <add key="TwilioAuthToken" value="your_twilio_auth_token" />
-        <add key="TwilioNumber" value="your_twilio_number" />
-        <add key="TestDomain" value="test.domain.com"/>
+   <appSettings>
+     <add key="TwilioAccountSID" value="your_twilio_account_SID" />
+     <add key="TwilioAuthToken" value="your_twilio_auth_token" />
+     <add key="TwilioNumber" value="your_twilio_number" />
+     <add key="AuthyKey" value="your_authy_key" />
    </appSettings>
    ```
 3. Hit `Ctrl + F5` to build and run the solution.
