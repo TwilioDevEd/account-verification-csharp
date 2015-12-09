@@ -35,18 +35,22 @@ create an account</li>
 </ul>
 <p>Let&#39;s get started! Click the right arrow to move on to the next step of the tutorial.</p>
 </div><div data-title="User Management" data-file="AccountVerification.Web/Models/IdentityModels.cs" data-highlight="13-19" class="step"><h2 id="user-management">User Management</h2>
-<p>This tutorial focuses in user registration process, right?. So, in order to save us a boilerplate coding
-session we&#39;ll be using use <a href="http://www.asp.net/identity">ASP.NET.Identity</a>, which is a relative new membership
-system for building ASP.NET web apps and it provides you with some very powerful user and role managements features.</p>
-<p>In order to define ours <strong>User</strong> model we just have to subclass the one provided by ASP.NET
-Identity and specify what properties we want for it, which would be the <code>Name</code>, the <code>CountryCode</code> and the <code>AuthyUserId</code>, this one
-will be used to store the Authy token used to identify the user. Later in this tutorial we&#39;ll explain how to obtain it.</p>
+<p>This tutorial focuses on the user registration process so, we should
+probably mention the auth model. We&#39;ll be using use
+<a href="http://www.asp.net/identity">ASP.NET.Identity</a>, which is a relatively
+new membership system for building ASP.NET web apps and it provides you
+with some very powerful user and role managements features.</p>
+<p>In order to define ours <strong>User</strong> model we just have to subclass the one
+provided by ASP.NET Identity and specify what properties we want for it,
+which would be the <code>Name</code>, the <code>CountryCode</code> and the <code>AuthyUserId</code>, this
+one will be used to store the Authy token used to identify the user.
+Later in this tutorial we&#39;ll explain how to obtain it.</p>
 </div><div data-title="Registration form and UI" data-file="AccountVerification.Web/Views/Account/Register.cshtml" data-highlight="9-49" data-mode="html" class="step"><h2 id="registration-form-and-ui">Registration form and UI</h2>
 <p>During the registration of a new user, we ask for a name, an E-mail address, and a password.
 In order to validate their account, we also ask them for a mobile number
 with a country code, which we can use with Authy to send the verification code
 via SMS.</p>
-<p>When we create a new ASP.NET Web Application, it also comes with ASP.NET Identity views required,
+<p>When we create a new ASP.NET Web Application, it includes the necessary <code>ASP.NET Identity</code> views,
 among those is the registration form. So, we just have to modify it to get it looking like we want.</p>
 </div><div data-title="Registration server side implementation" data-file="AccountVerification.Web/Controllers/AccountController.cs" data-highlight="152-191" class="step"><h2 id="registration-server-side-implementation">Registration server side implementation</h2>
 <p>It&#39;s now the controller&#39;s responsibility to verify that the user provides the required information to
@@ -55,34 +59,23 @@ Authy&#39;s API and requests the send of the verification code to the user throu
 method invocation, which will be explained a few sections ahead.</p>
 <p>The flow finalizes with the redirect of the user to the verification code page.</p>
 </div><div data-title="Verification form and UI" data-file="AccountVerification.Web/Views/Account/VerifyRegistrationCode.cshtml" data-mode="html" class="step"><h2 id="verification-form-and-ui">Verification form and UI</h2>
-<p>As stated before, once the user completes the registration he/she gets redirected to the verification page, which you may access
-at any time using the route <code>/Account/VerifyRegistrationCode</code>. This page consists in a simple form where you can input your
-account E-mail address, to get identify as you, and the sent SMS verification code.s</p>
-<p>It&#39;s super simple, the final code should be like the one in the right.</p>
+<p>As stated before, once the user completes the registration they get redirected to the verification page, which you may access
+at any time using the route <code>/Account/VerifyRegistrationCode</code>. This page consists of a simple form where you can input your
+account E-mail address, and verify the SMS verification code.</p>
 </div><div data-title="Verification server side implementation" data-file="AccountVerification.Web/Controllers/AccountController.cs" data-highlight="73-97" class="step"><h2 id="verification-server-side-implementation">Verification server side implementation</h2>
-<p>The server side implementation for the registration process confirmation ensures the given E-mail belongs to previously registered user which hasn&#39;t
+<p>The server side implementation for the registration process confirmation ensures the given E-mail belongs to a previously registered user which hasn&#39;t
 performed the verification process yet.</p>
-<p>From this moment the process have two critical steps:</p>
+<p>From this moment the process has two critical steps:</p>
 <ol>
-<li><p>It communicates with Authy&#39;s API to check is the given code is correct.
-If verification is performed
-as positive, it signs in the user and performs the second critical step:</p>
+<li><p>It communicates with Authy&#39;s API to check that the given code is correct</p>
 </li>
-<li><p>Send a confirmation SMS, using Twilio&#39;s API, to the user.</p>
+<li><p>Once the code is verified with Authy we send a confirmation SMS to the user.</p>
+</li>
+<li><p>Finally it redirects the user to a success page.</p>
 </li>
 </ol>
-<p>Finally it redirects the user to a success page.</p>
-<p>The communication to Authy&#39;s and Twilio&#39;s APIs will gets explained a few slides ahead.</p>
-</div><div data-title="Re send verification code" data-file="AccountVerification.Web/Controllers/AccountController.cs" data-highlight="118-142" class="step"><h2 id="re-send-verification-code">Re send verification code</h2>
-<p>This is really really simple stuff. It consists in a simple form that gets the user&#39;s
-E-mail, verifies if belongs to a previously registered user not verified yet and request a verification code to be sent to his/her
-registered mobile phone.</p>
-<p>Checkout the <code>ResendVerificationCode</code> action from <code>AccountController</code> controller and its correspondent
-<a href="//github.com/TwilioDevEd/account-verification-csharp/blob/b6308859a5e28b80ba1d34bc480ff7fb5fdaa8fe/AccountVerification.Web/Views/Account/ResendVerificationCode.cshtml">view</a>.</p>
 </div><div data-title="Twilio and Authy configuration" data-file="AccountVerification.Web/Web.config" data-highlight="19-22" data-mode="xml" class="step"><h2 id="twilio-and-authy-configuration">Twilio and Authy configuration</h2>
-<p>As we&#39;ll be using the
-<a href="//www.twilio.com/docs/csharp/install">The Twilio C# Helper Library</a> and the
-<a href="https://github.com/davidsulpy/authy-net-client">Authy.Net Client</a>, it&#39;s required some configuration:</p>
+<p>Before we move on let&#39;s take a quick look at some application configuration.</p>
 <p>You need to create a Local.config file under the <code>AccountVerification.Web</code> directory with the following content:</p>
 <pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
   &lt;appSettings&gt;
@@ -91,43 +84,30 @@ registered mobile phone.</p>
     &lt;add key=&quot;TwilioNumber&quot; value=&quot;your_twilio_number&quot; /&gt;
     &lt;add key=&quot;AuthyKey&quot; value=&quot;your_authy_key&quot; /&gt;
   &lt;/appSettings&gt;
-</code></pre><p>This content will override the one highlighted on the right.
-Note that you have to replace the placeholders <code>your_twilio_account_SID</code>, <code>your_twilio_auth_token</code>, <code>your_twilio_number</code>
-and <code>your_authy_key</code> with your production information,
-which you can find in your <a href="/user/account">Twlio Account Dashboard</a> and your <a href="https://dashboard.authy.com/signup">Authy
-dashboard</a> respectively.</p>
+</code></pre><p>You can find these settings in your <a href="/user/account">Twlio Account Dashboard</a> and your <a href="https://dashboard.authy.com/signup">Authy
+dashboard</a>.</p>
+<p><strong>See Also</strong></p>
+<ul>
+<li><a href="//www.twilio.com/docs/csharp/install">The Twilio C# Helper Library</a></li>
+<li><a href="https://github.com/davidsulpy/authy-net-client">The Authy.Net Client</a></li>
+</ul>
 </div><div data-title="Request verification code" data-file="AccountVerification.Web/App_Start/IdentityConfig.cs" data-highlight="132-154" class="step"><h2 id="request-verification-code">Request verification code</h2>
 <p>The ASP.NET Identity <strong>UserManager</strong> is the brain for all the user management related operation and where all our magic happens.</p>
-<p>In order to request a verification code, we just have to extend the <code>ApplicationUserManager</code> by adding it an <code>AuthyClient</code> instance and access
-property. Additionally, we add a <code>RequestPhoneNumberConfirmationTokenAsync</code> method with the purpose of verify if the user exists and if it has a
-<code>AuthyUserId</code> value, fact that indicates it has been previously registered using Authy API. If not, we perform an invocation of <code>RegisterUser</code> method
-in the <code>AuthyClient</code> instance, which returns the <code>AuthyUserId</code> for the newly registered user, and updates it with that value.</p>
-<p>Finally, to order Authy to send the verification code to the user, we call the <code>SendSms</code> method on the <code>AuthyClient</code> instance passing it the user&#39;s
-<code>AuthyUserId</code> and a <code>true</code> value for the <code>force</code> parameter. This last parameter is mandatory to be passed as <code>true</code> because
-that way we force Authy to send an SMS explicitly, which may not happen according to the Authy&#39;s user profile settings and devices, if he/she
-is already and Authy&#39;s user, and the Authy&#39;s alternatives verification methods, but that&#39;s out of our scope.</p>
+<p>In order to request a verification code, we extend the <code>ApplicationUserManager</code> by adding an <code>AuthyClient</code> instance. Additionally, we add a method to check that the user exists and has been registered with Authy. If they haven&#39;t, we call <code>RegisterUser</code> on the <code>AuthyClient</code> instance, and update the <code>AuthyUserId</code>.</p>
+<p>Finally, we call the <code>SendSms</code> with the <code>AuthyClient</code> which requires the user&#39;s
+<code>AuthyUserId</code> and a <code>true</code> value for the <code>force</code> parameter. This will send the verification code to the user and force it to be sent via SMS.</p>
 </div><div data-title="Verification code confirmation" data-file="AccountVerification.Web/App_Start/IdentityConfig.cs" data-highlight="113-129" class="step"><h2 id="verification-code-confirmation">Verification code confirmation</h2>
-<p>If you recall, the registration process confirmation is composed of two steps according to our
-<a href="//github.com/TwilioDevEd/account-verification-csharp/blob/b6308859a5e28b80ba1d34bc480ff7fb5fdaa8fe/AccountVerification.Web/Controllers/AccountController.cs#L85-L91">controller</a>.
-The first one, confirming the verification code, get addressed as follows:</p>
-<p>We add a <code>ConfirmPhoneNumberAsync</code> method to the <code>ApplicationUserManager</code> class. This method will call Authy API&#39;s <code>VerifyToken</code> method,
+<p>In order to verify the code we just sent the user we add a <code>ConfirmPhoneNumberAsync</code> method to the <code>ApplicationUserManager</code> class. This method will call Authy API&#39;s <code>VerifyToken</code> method,
 which returns a <code>boolean</code> indicating if the code is correct.
 If so, the method updates the user stating that the user phone number has been confirmed.</p>
 <p>This method returns an <code>IdentityResult</code> object indicating the verification process&#39;s result. If positive, it will lead the controller
 to the second step of registration process confirmation.</p>
 </div><div data-title="Account confirmation notification" data-file="AccountVerification.Web/App_Start/IdentityConfig.cs" data-highlight="17-30" class="step"><h2 id="account-confirmation-notification">Account confirmation notification</h2>
-<p>The second step for registration process confirmation implies that once the verification code gets confirmed, the controller signs in the user and
-sends a registration confirmation notification using Twilio SMS API.</p>
-<p>As seen in the
-<a href="//github.com/TwilioDevEd/account-verification-csharp/blob/b6308859a5e28b80ba1d34bc480ff7fb5fdaa8fe/AccountVerification.Web/Controllers/AccountController.cs#L90"><code>AccountController</code></a>,
-this is achieved using the <code>UserManager</code> class&#39;s <code>SendSmsAsync</code>method which uses internally the <code>SmsService</code>class. So, we just have to add
-some real code to its <code>SendAsync</code> method.</p>
-<p>This real code will use a <code>TwilioRestClient</code> with our Twilio&#39;s preconfigured SID and Auth Token for
-sending an SMS to the messages&#39;s destination number, which in fact is the user&#39;s phone number, from our previously configured Twilio&#39;s number.</p>
-<p>Check the code in the right to see how it looks once finished and be aware, we are almost done.</p>
+<p>After we verify the code and log in the user, we need to send an success SMS. We can do this by adding some Twilio code to the <code>UserManager</code> class.</p>
+<p>Here we create a <code>TwilioRestClient</code> with our Twilio&#39;s preconfigured SID and Auth Token for
+sending an SMS to the messages&#39;s destination number. Next all we need to do is call <a href="//www.twilio.com/docs/api/rest/sending-messages#example-1"><code>twilio.sendMessage()</code></a> and we&#39;ve sent an SMS to our verified and logged in user!</p>
 </div><div data-title="Where to Next?" class="step"><h2 id="where-to-next-">Where to Next?</h2>
-<p>That&#39;s it! We&#39;ve just implemented account verification so your users can
-confirm the registration process through their phone number. If you&#39;re a ASP.NET MVC developer working with Twilio,
+<p>That&#39;s it! We&#39;ve just implemented account verification. If you&#39;re a ASP.NET MVC developer working with Twilio,
 you might want to check out these other tutorials:</p>
 <p><a href="//www.twilio.com/docs/tutorials/walkthrough/server-notifications/csharp/mvc"><strong>SMS and MMS Notifications</strong></a></p>
 <p>Use Twilio to create sms server alerts so that you never miss a critical server issue.</p>
