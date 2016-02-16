@@ -1,7 +1,7 @@
 # Account Verification - ASP.NET MVC
 [![Build status](https://ci.appveyor.com/api/projects/status/u7adfy20o1d2mcbt?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/account-verification-csharp)
 
-Use Authy and Twilio to verify your user's account.
+Use Authy and Twilio to verify your user's account. [View the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/account-verification/csharp/mvc)!
 
 ### Local development
 
