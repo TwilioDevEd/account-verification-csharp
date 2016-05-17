@@ -52,14 +52,14 @@
       Now the user is logged in but not verified. In the next steps we'll
       learn how to verify the user using Authy.
 
-  .step(data-title='Authy configuration' data-file='AccountVerification.Web/Web.config' data-highlight="19-22" data-mode='xml')
+  .step(data-title='Authy Configuration' data-file='AccountVerification.Web/Web.config' data-highlight="19-22" data-mode='xml')
     :markdown
-      ## Authy configuration
+      ## Authy Configuration
 
       Before we move on let's take a quick look at some application configuration.
 
       You need to create a Local.config file under the `AccountVerification.Web` directory with the following content:
-      ```
+      ```xml
         <?xml version="1.0" encoding="utf-8"?>
         <appSettings>
           <add key="TwilioAccountSID" value="your_twilio_account_SID" />
@@ -96,7 +96,7 @@
 
       Let's check out the code for that next!
 
-  .step(data-title='Verifying the Code', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='71-89')
+  .step(data-title='Verifying the Code', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='118-129')
     :markdown
       ## Verifying the Code
 

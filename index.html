@@ -47,17 +47,18 @@ the necessary information to create a new user. If the user is created successfu
 he/she will be logged into the system automatically.</p>
 <p>Now the user is logged in but not verified. In the next steps we&#39;ll
 learn how to verify the user using Authy.</p>
-</div><div data-title="Authy configuration" data-file="AccountVerification.Web/Web.config" data-highlight="19-22" data-mode="xml" class="step"><h2 id="authy-configuration">Authy configuration</h2>
+</div><div data-title="Authy Configuration" data-file="AccountVerification.Web/Web.config" data-highlight="19-22" data-mode="xml" class="step"><h2 id="authy-configuration">Authy Configuration</h2>
 <p>Before we move on let&#39;s take a quick look at some application configuration.</p>
 <p>You need to create a Local.config file under the <code>AccountVerification.Web</code> directory with the following content:</p>
-<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-  &lt;appSettings&gt;
-    &lt;add key=&quot;TwilioAccountSID&quot; value=&quot;your_twilio_account_SID&quot; /&gt;
-    &lt;add key=&quot;TwilioAuthToken&quot; value=&quot;your_twilio_auth_token&quot; /&gt;
-    &lt;add key=&quot;TwilioNumber&quot; value=&quot;your_twilio_number&quot; /&gt;
-    &lt;add key=&quot;AuthyKey&quot; value=&quot;your_authy_key&quot; /&gt;
-  &lt;/appSettings&gt;
-</code></pre><p>Now we need our Authy production key (<a href="https://dashboard.authy.com/signup">sign up for Authy
+<pre><code class="cm-s-monokai lang-xml">  <span class="cm-meta">&lt;?xml</span> <span class="cm-meta">version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">appSettings</span><span class="cm-tag cm-bracket">&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">add</span> <span class="cm-attribute">key</span>=<span class="cm-string">&quot;TwilioAccountSID&quot;</span> <span class="cm-attribute">value</span>=<span class="cm-string">&quot;your_twilio_account_SID&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">add</span> <span class="cm-attribute">key</span>=<span class="cm-string">&quot;TwilioAuthToken&quot;</span> <span class="cm-attribute">value</span>=<span class="cm-string">&quot;your_twilio_auth_token&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">add</span> <span class="cm-attribute">key</span>=<span class="cm-string">&quot;TwilioNumber&quot;</span> <span class="cm-attribute">value</span>=<span class="cm-string">&quot;your_twilio_number&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">add</span> <span class="cm-attribute">key</span>=<span class="cm-string">&quot;AuthyKey&quot;</span> <span class="cm-attribute">value</span>=<span class="cm-string">&quot;your_authy_key&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">appSettings</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
+<p>Now we need our Authy production key (<a href="https://dashboard.authy.com/signup">sign up for Authy
 here</a>). When you create an Authy
 application the production key is found on the dashboard.</p>
 <p><img src="//s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png" alt="Authy Dashboard"></p>
@@ -76,7 +77,7 @@ a token to the user&#39;s mobile phone to verify their account in our
 controller. When the code is sent we redirect to another page where the
 user can enter the token they received, therefore completing the verification process.</p>
 <p>Let&#39;s check out the code for that next!</p>
-</div><div data-title="Verifying the Code" data-file="AccountVerification.Web/App_Start/IdentityConfig.cs" data-highlight="71-89" class="step"><h2 id="verifying-the-code">Verifying the Code</h2>
+</div><div data-title="Verifying the Code" data-file="AccountVerification.Web/App_Start/IdentityConfig.cs" data-highlight="118-129" class="step"><h2 id="verifying-the-code">Verifying the Code</h2>
 <p>Authy provides us with a <code>VerifyToken()</code> method that allows us to pass a
 user id and a token. In this case we just need to check that the API request
 was successful and if so, it calls <code>setPhoneNumberConfirmedAsync</code> passing true.</p>
