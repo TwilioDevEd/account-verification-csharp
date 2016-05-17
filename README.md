@@ -6,14 +6,14 @@ Use Authy and Twilio to verify your user's account. [View the full tutorial here
 
 ### Local development
 
-1. First clone this repository and `cd` into it
+1. First clone this repository and `cd` into it.
 
    ```
    git clone git@github.com:TwilioDevEd/account-verification-csharp.git
    cd account-verification-csharp
    ```
 
-1. Create the sample configuration file and edit it to match your configuration
+1. Create the sample configuration file and edit it to match your configuration.
 
   ```
   rename AccountVerification.Web\Local.config.example AccountVerification.Web\Local.config
@@ -39,7 +39,7 @@ Use Authy and Twilio to verify your user's account. [View the full tutorial here
   http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
   ```
 
-1. Check it out at [http://localhost:25451/](http://localhost:25451/)
+1. Check it out at [http://localhost:25451/](http://localhost:25451/).
 
 ## Meta
 
