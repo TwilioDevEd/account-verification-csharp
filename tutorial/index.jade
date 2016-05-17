@@ -127,16 +127,6 @@
       To wrap things up, let's implement the last step where we confirm that the
       user's account has been verified with a text message and a success page.
 
-  .step(data-title="Show User Details Page", data-file='AccountVerification.Web/Views/Account/Status.cshtml')
-    :markdown
-      ## Show User Details Page
-
-      This simple `cshtml` file displays a user name and let's them know
-      they've been verified.
-
-      This should suffice for confirmation in the browser that the user has been
-      verified. Let's see how we might send that text message next.
-
   .step(data-title='Sending the Confirmation Message', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='21-28')
     :markdown
       ## Sending the Confirmation Message
