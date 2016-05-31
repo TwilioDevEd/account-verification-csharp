@@ -23,8 +23,9 @@ Use Authy and Twilio to verify your user's account. [View the full tutorial here
  [Twilio Account Settings](https://www.twilio.com/user/account/settings).
  You will also need a `TwilioNumber`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
 
-1. Expose your application to the wider internet using [ngrok](http://ngrok.com). This step
-  is important because the application won't work as expected if you run it through
+1. Expose your application to the wider internet using [ngrok](http://ngrok.com).
+
+  This step is important because the application won't work as expected if you run it through
   localhost.
 
   To start using `ngrok` in our project you'll have execute to the following line in the _command prompt_.
@@ -46,4 +47,3 @@ Use Authy and Twilio to verify your user's account. [View the full tutorial here
 * No warranty expressed or implied. Software is as is. Diggity.
 * [MIT License](http://www.opensource.org/licenses/mit-license.html)
 * Lovingly crafted by Twilio Developer Education.
-
