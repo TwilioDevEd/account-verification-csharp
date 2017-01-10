@@ -81,7 +81,7 @@
       * [The Twilio C# Helper Library](//www.twilio.com/docs/csharp/install)
       * [The Authy.Net Client](https://github.com/davidsulpy/authy-net-client)
 
- .step(data-title='Sending a Token on Account Creation' data-file='AccountVerification.Web/App_Start/IdentityConfig.cs' data-highlight="132-154")
+ .step(data-title='Sending a Token on Account Creation' data-file='AccountVerification.Web/App_Start/IdentityConfig.cs' data-highlight="142-164")
     :markdown
       ## Sending a Token on Account Creation
 
@@ -95,7 +95,7 @@
 
       Let's check out the code for that next!
 
-  .step(data-title='Verifying the Code', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='118-129')
+  .step(data-title='Verifying the Code', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='128-139')
     :markdown
       ## Verifying the Code
 
@@ -126,15 +126,13 @@
       To wrap things up, let's implement the last step where we confirm that the
       user's account has been verified with a text message and a success page.
 
-  .step(data-title='Sending the Confirmation Message', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='21-28')
+  .step(data-title='Sending the Confirmation Message', data-file='AccountVerification.Web/App_Start/IdentityConfig.cs', data-highlight='34-38')
     :markdown
       ## Sending the Confirmation Message
 
-      We create a single instance of the Twilio REST API helper,
-      called `twilio` in this example.
-
-      Then all we need to do to send an SMS to the user's phone is use the built
-      in `SendMessage()`.
+      We initialize `TwilioClient` with our Twilio AccountSid and Auth Token, then
+      all we need to do to send an SMS to the user's phone is use the
+      `MessageResource.Create()` method.
 
       For more information on how to send SMS using Twilio's Rest API visit this
       [link](//www.twilio.com/docs/quickstart/csharp/sms/sending-via-rest).
