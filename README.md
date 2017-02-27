@@ -1,8 +1,14 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
+
 # Account Verification - ASP.NET MVC
 
 [![Build status](https://ci.appveyor.com/api/projects/status/u7adfy20o1d2mcbt?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/account-verification-csharp)
 
-Use Authy and Twilio to verify your user's account. [View the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/account-verification/csharp/mvc)!
+Learn to implement account verification in your web app with Twilio-powered Authy. Account verification helps you ensure your customer data is accurate and secure. This tutorial will show you the code to make it happen.
+
+[View the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/account-verification/csharp/mvc)!
 
 ### Local development
 
@@ -20,25 +26,15 @@ Use Authy and Twilio to verify your user's account. [View the full tutorial here
   ```
 
  You can find your `TwilioAccountSID` and `TwilioAuthToken` in your
- [Twilio Account Settings](https://www.twilio.com/user/account/settings).
- You will also need a `TwilioNumber`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
+ [Twilio Account Settings](https://www.twilio.com/console).
 
-1. Expose your application to the wider internet using [ngrok](http://ngrok.com).
+ You will also need a `TwilioNumber`, which you may find
+ [here](https://www.twilio.com/user/account/phone-numbers/incoming).
 
-  This step is important because the application won't work as expected if you run it through
-  localhost.
+ For the `AuthyKey` you first need to [sign up for Authy](https://dashboard.authy.com/signup).
+ When you create an Authy application the production key is found on the dashboard.
 
-  To start using `ngrok` in our project you'll have execute to the following line in the _command prompt_.
-
-  ```shell
-  ngrok http 25451 -host-header="localhost:25451"
-  ```
-
-  Keep in mind that our endpoint is:
-
-  ```
-  http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
-  ```
+ ![Authy Dashboard](http://s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png)
 
 1. Check it out at [http://localhost:25451/](http://localhost:25451/).
 
