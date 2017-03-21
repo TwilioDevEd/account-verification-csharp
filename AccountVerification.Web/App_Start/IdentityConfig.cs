@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Security.Claims;
@@ -11,31 +11,21 @@ using Microsoft.Owin.Security;
 using AccountVerification.Web.Models;
 using Authy.Net;
 using Twilio;
-using Twilio.Clients;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
 
 namespace AccountVerification.Web
 {
     public class SmsService : IIdentityMessageService
     {
-        public SmsService()
+        public Task SendAsync(IdentityMessage message)
         {
-            TwilioClient.Init(TwilioSettings.AccountSID, TwilioSettings.AuthToken);
-        }
+            var twilio = new TwilioRestClient(TwilioSettings.AccountSID, TwilioSettings.AuthToken);
 
-        public SmsService(ITwilioRestClient twilioRestClient) : this()
-        {
-            TwilioClient.SetRestClient(twilioRestClient);
-        }
+            var result = twilio.SendMessage(TwilioSettings.PhoneNumber,message.Destination, message.Body);
 
-        public async Task SendAsync(IdentityMessage message)
-        {
-            var to = new PhoneNumber(message.Destination);
-            await MessageResource.CreateAsync(
-                to,
-                from: new PhoneNumber(TwilioSettings.PhoneNumber),
-                body: message.Body);
+            Trace.TraceInformation(result.Status);
+
+            // Twilio doesn't currently have an async API, so we return success.
+            return Task.FromResult(0);
         }
     }
 
